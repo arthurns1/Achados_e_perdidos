@@ -2,16 +2,25 @@ import { Request, Response } from "express";
 import { Item } from "../models/Item";
 
 interface IItem {
-    login: string;
-    senha: string;
+    id_item: number;
+    dono: string;
+    nome: string;
+    foto: string;
+    data_criacao: Date;
 }
 
 class ControllerItens {
     static async create(req: Request<{}, {}, IItem>, res: Response) {
         try {
-            const params = {};
+            const params = {
+                id_item: req.body.id_item,
+                dono: req.body.dono,
+                nome: req.body.nome,
+                foto: req.body.foto,
+                data_criacao: req.body.data_criacao,
+            };
 
-            await Item.create();
+            await Item.create(params);
 
             res.status(201).json({
                 results: [],
