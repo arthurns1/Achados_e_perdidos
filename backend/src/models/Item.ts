@@ -10,6 +10,7 @@ Item.init(
             type: DataTypes.NUMBER,
             primaryKey: true,
             allowNull: false,
+            autoIncrement: true,
         },
         dono: {
             type: DataTypes.STRING,

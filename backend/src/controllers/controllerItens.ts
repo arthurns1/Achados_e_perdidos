@@ -95,7 +95,7 @@ class ControllerItens {
     static async delete_by_id_item(req: Request, res: Response) {
         try {
             const params = {
-                id_item: req.body.id_item,
+                id_item: req.params.id_item,
             };
 
             const item = await Item.destroy({
