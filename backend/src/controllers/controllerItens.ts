@@ -50,10 +50,10 @@ class ControllerItens {
         }
     }
 
-    static async get_by_login(req: Request, res: Response) {
+    static async get_by_id_item(req: Request, res: Response) {
         try {
             const params = {
-                id_item: req.body.id_item,
+                id_item: req.params.id_item,
             };
 
             const item = await Item.findOne({
@@ -72,13 +72,13 @@ class ControllerItens {
         }
     }
 
-    static async update_by_login(req: Request, res: Response) {
+    static async update_by_id_item(req: Request, res: Response) {
         try {
             const params = {
-                id_item: req.body.id_item,
+                id_item: req.params.id_item,
             };
 
-            const admin = await Item.update(req.body, { where: params });
+            const item = await Item.update(req.body, { where: params });
 
             res.status(201).json({
                 results: [],
@@ -92,7 +92,7 @@ class ControllerItens {
         }
     }
 
-    static async delete_by_login(req: Request, res: Response) {
+    static async delete_by_id_item(req: Request, res: Response) {
         try {
             const params = {
                 id_item: req.body.id_item,

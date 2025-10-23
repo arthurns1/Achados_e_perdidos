@@ -1,6 +1,6 @@
 import { DataTypes, DATE, Model } from "sequelize";
-import { sequelize } from "../database/conn.js";
-import { Admin } from "./Admin.js";
+import { sequelize } from "../database/conn";
+import { Admin } from "./Admin";
 
 class Item extends Model {}
 
@@ -30,12 +30,8 @@ Item.init(
     {
         sequelize,
         timestamps: false,
+        tableName: "itens",
     },
 );
-
-Item.belongsToMany(Admin, {
-    through: "admins_itens",
-    foreignKey: "id_item",
-});
 
 export { Item };

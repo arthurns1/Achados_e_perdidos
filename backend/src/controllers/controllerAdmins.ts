@@ -14,7 +14,7 @@ class ControllerAdmins {
                 senha: req.body.senha,
             };
 
-            await Admin.create(params);
+            const admin = await Admin.create(params);
 
             res.status(201).json({
                 results: [],
