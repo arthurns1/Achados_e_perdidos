@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import Jwt from "jsonwebtoken";
 import { Admin } from "../models/Admin";
+import { config } from "dotenv";
+
+config();
 
 class AuthController {
     public static async login(req: Request, res: Response) {
@@ -11,11 +14,11 @@ class AuthController {
             });
             const errors = [];
 
-            if (usuario === null) {
+            if (usuario == null) {
                 errors.push("Usuário não encontrado");
             }
 
-            if (req.body.senha == usuario?.dataValues.senha) {
+            if (req.body.senha != usuario?.dataValues.senha) {
                 errors.push("Senha incorreta!");
             }
 
@@ -25,7 +28,7 @@ class AuthController {
                 });
             } else {
                 const token = await Jwt.sign(
-                    params.senha,
+                    { login: params.login },
                     process.env.SECRET_KEY as string,
                     { expiresIn: "1h" },
                 );
