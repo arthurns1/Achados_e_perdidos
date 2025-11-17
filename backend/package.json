@@ -7,6 +7,7 @@
         "@types/express": "^5.0.3",
         "@types/jsonwebtoken": "^9.0.10",
         "@types/sequelize": "^4.28.20",
+        "@types/yup": "^0.29.14",
         "accepts": "^2.0.0",
         "body-parser": "^2.2.0",
         "bytes": "^3.1.2",
@@ -94,7 +95,9 @@
         "unpipe": "^1.0.0",
         "vary": "^1.1.2",
         "wrappy": "^1.0.2",
-        "xtend": "^4.0.2"
+        "xtend": "^4.0.2",
+        "yup": "^1.7.1",
+        "yup-locale-pt": "^0.0.9"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
