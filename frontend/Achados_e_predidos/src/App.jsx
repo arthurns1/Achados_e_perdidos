@@ -1,13 +1,14 @@
-import './App.css'
-import { Outlet } from 'react-router-dom'
+import "./App.css";
+import { Outlet } from "react-router-dom";
+import { Menu } from "./components/Menu";
 
 function App() {
-
-  return (
-    <>
-    <Outlet/>
-    </>
-  )
+    return (
+        <>
+            <Menu />
+            <Outlet />
+        </>
+    );
 }
 
-export default App
+export default App;
