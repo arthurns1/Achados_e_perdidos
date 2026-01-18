@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { send_request } from "../functions/send_request";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function CadastroItem() {
     const { auth, authUser } = useContext(AuthContext);
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -13,21 +13,18 @@ function Login() {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
 
-        const admin = {
-            login: formData.get("login"),
-            senha: formData.get("senha"),
-        };
-
-        send_request("http://localhost:3000/login", "POST", admin).then(
-            (res) => {
-                if ("error_messages" in res) {
-                    setError(res.error_messages[0]);
-                } else {
-                    authUser(res);
-                    navigate("/");
-                }
-            },
-        );
+        send_request(
+            "http://localhost:3000/item/create",
+            "POST",
+            formData,
+            "",
+        ).then((res) => {
+            if ("error_message" in res) {
+                setError(res.error[0]);
+            } else {
+                navigate("/");
+            }
+        });
     }
 
     return (
@@ -37,21 +34,22 @@ function Login() {
                     className="card-body"
                     method="post"
                     onSubmit={handleSubmit}
+                    encType="multipart/form-data"
                 >
-                    <h1 className="title">LOGIN</h1>
+                    <h1 className="title">CADASTRO DE ITEM</h1>
                     <Field
-                        name="login"
-                        placeholder="Insira seu login"
-                        type="text"
+                        name="foto"
+                        placeholder="Insira sua foto"
+                        type="file"
                     />
                     <Field
-                        name="senha"
-                        placeholder="Insira sua senha"
-                        type="password"
+                        name="nome"
+                        placeholder="Insira o nome do item"
+                        type="text"
                     />
                     <input
                         type="submit"
-                        value="Fazer Login"
+                        value="Adicionar item"
                         className="submit-button"
                     />
                     <span className="error_messages">{error}</span>
@@ -61,4 +59,4 @@ function Login() {
     );
 }
 
-export { Login };
+export { CadastroItem };

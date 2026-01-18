@@ -4,8 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { send_request } from "../functions/send_request";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
-    const { auth, authUser } = useContext(AuthContext);
+function CadastrarAdmin() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -18,14 +17,11 @@ function Login() {
             senha: formData.get("senha"),
         };
 
-        send_request("http://localhost:3000/login", "POST", admin).then(
+        send_request("http://localhost:3000/admin/create", "POST", admin).then(
             (res) => {
-                if ("error_messages" in res) {
-                    setError(res.error_messages[0]);
-                } else {
-                    authUser(res);
-                    navigate("/");
-                }
+                if ("error" in res) {
+                    setError(res.error);
+                } else navigate("/");
             },
         );
     }
@@ -38,20 +34,20 @@ function Login() {
                     method="post"
                     onSubmit={handleSubmit}
                 >
-                    <h1 className="title">LOGIN</h1>
+                    <h1 className="title">CADASTRAR</h1>
                     <Field
                         name="login"
-                        placeholder="Insira seu login"
+                        placeholder="Insira o login do novo admin"
                         type="text"
                     />
                     <Field
                         name="senha"
-                        placeholder="Insira sua senha"
+                        placeholder="Insira a senha do novo admin"
                         type="password"
                     />
                     <input
                         type="submit"
-                        value="Fazer Login"
+                        value="Cadastrar admin"
                         className="submit-button"
                     />
                     <span className="error_messages">{error}</span>
@@ -61,4 +57,4 @@ function Login() {
     );
 }
 
-export { Login };
+export { CadastrarAdmin };
