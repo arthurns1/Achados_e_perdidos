@@ -17,13 +17,14 @@ export async function send_request(
         const content = await res.json();
 
         return content;
-    } else {
-        if (bodyType == "json") {
+    } else if (body !== null) {
+        if (bodyType === "json") {
             res = await fetch(url, {
                 body: JSON.stringify(body),
                 method: method,
                 headers: {
                     Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
                 },
             });
         } else {

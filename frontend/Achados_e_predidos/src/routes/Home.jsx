@@ -12,23 +12,7 @@ function Home() {
         send_request("http://localhost:3000/item/get_all", "GET").then(
             (res) => {
                 if (res.results.length != 0) {
-                    setItens(
-                        <ul className="itens">
-                            {res.results.map((item) => {
-                                return (
-                                    <Item
-                                        img={
-                                            "http://localhost:3000/upload/" +
-                                            item.foto
-                                        }
-                                        nome={item.nome}
-                                        entrega={item.data_criacao}
-                                        key={item.id_item}
-                                    />
-                                );
-                            })}
-                        </ul>,
-                    );
+                    setItens(res.results);
                 } else {
                     setItens(<h2>Não existem itens guardados</h2>);
                 }
@@ -39,7 +23,7 @@ function Home() {
     function render_adicionar_button() {
         if ("token" in auth) {
             return (
-                <div className="Adicionar Item">
+                <div className="adicionar-item">
                     <Link to="cadastro-item">
                         <button className="adicionar">Adicionar item</button>
                     </Link>
@@ -48,11 +32,36 @@ function Home() {
         }
     }
 
+    function render_itens() {
+        if (itens.length > 0) {
+            return (
+                <ul className="itens">
+                    {itens.map((item) => {
+                        return (
+                            <Item
+                                img={
+                                    "http://localhost:3000/upload/" + item.foto
+                                }
+                                nome={item.nome}
+                                entrega={item.data_criacao}
+                                key={item.id_item}
+                                id={item.id_item}
+                                auth={auth}
+                            />
+                        );
+                    })}
+                </ul>
+            );
+        } else {
+            return <h2>Não foram encontrados itens guardados</h2>;
+        }
+    }
+
     return (
         <main>
             <h1>Itens guardados:</h1>
             {render_adicionar_button()}
-            {itens}
+            {render_itens()}
         </main>
     );
 }
