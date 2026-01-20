@@ -18,6 +18,7 @@ function CadastroItem() {
             "POST",
             formData,
             "",
+            auth,
         ).then((res) => {
             if ("error_message" in res) {
                 setError(res.error[0]);

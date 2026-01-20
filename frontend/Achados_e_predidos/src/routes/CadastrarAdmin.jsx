@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function CadastrarAdmin() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { auth, userAuth } = useContext(AuthContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,13 +18,17 @@ function CadastrarAdmin() {
             senha: formData.get("senha"),
         };
 
-        send_request("http://localhost:3000/admin/create", "POST", admin).then(
-            (res) => {
-                if ("error" in res) {
-                    setError(res.error);
-                } else navigate("/");
-            },
-        );
+        send_request(
+            "http://localhost:3000/admin/create",
+            "POST",
+            admin,
+            "json",
+            auth,
+        ).then((res) => {
+            if ("error" in res) {
+                setError(res.error);
+            } else navigate("/");
+        });
     }
 
     return (

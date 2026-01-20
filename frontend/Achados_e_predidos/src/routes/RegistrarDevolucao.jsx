@@ -22,6 +22,7 @@ function RegistrarDevolucao() {
             "PUT",
             body,
             "json",
+            auth,
         ).then((res) => {
             if ("error_message" in res) {
                 setError(res.error[0]);
