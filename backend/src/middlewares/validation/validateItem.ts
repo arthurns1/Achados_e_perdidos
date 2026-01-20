@@ -5,7 +5,7 @@ const itemSchema = Yup.object({
     id_item: Yup.number(),
     dono: Yup.string().min(15).max(15),
     nome: Yup.string().required().max(100),
-    foto: Yup.string().max(255).required(),
+    foto: Yup.string().max(255),
     data_criacao: Yup.date(),
 });
 
