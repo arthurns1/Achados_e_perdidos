@@ -23,7 +23,7 @@ function CadastrarAdmin() {
             "POST",
             admin,
             "json",
-            auth,
+            auth.token,
         ).then((res) => {
             if ("error" in res) {
                 setError(res.error);
@@ -55,7 +55,12 @@ function CadastrarAdmin() {
                         value="Cadastrar admin"
                         className="submit-button"
                     />
-                    <span className="error_messages">{error}</span>
+                    <span
+                        className="error_messages"
+                        style={{ display: error.length > 0 ? "block" : "none" }}
+                    >
+                        {error}
+                    </span>
                 </form>
             </section>
         </main>

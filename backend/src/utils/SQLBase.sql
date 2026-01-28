@@ -11,3 +11,5 @@ CREATE TABLE itens (
   foto VARCHAR(255),
   data_criacao DATE
 );
+
+INSERT INTO admins (login, senha) VALUES ('admin', '000');

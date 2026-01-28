@@ -22,7 +22,7 @@ function RegistrarDevolucao() {
             "PUT",
             body,
             "json",
-            auth,
+            auth.token,
         ).then((res) => {
             if ("error_message" in res) {
                 setError(res.error[0]);
@@ -52,7 +52,12 @@ function RegistrarDevolucao() {
                         value="Registrar devolução"
                         className="submit-button"
                     />
-                    <span className="error_messages">{error}</span>
+                    <span
+                        className="error_messages"
+                        style={{ display: error.length > 0 ? "block" : "none" }}
+                    >
+                        {error}
+                    </span>
                 </form>
             </section>
         </main>

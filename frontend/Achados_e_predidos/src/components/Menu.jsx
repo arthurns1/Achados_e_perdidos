@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import Logo from "../assets/Logos/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 function Menu() {
     const { auth, authUser, logoutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     function render_links() {
         if ("token" in auth) {
@@ -16,7 +17,14 @@ function Menu() {
                     <li>
                         <Link to="/cadastrar-admin"> CADASTRAR ADMIN</Link>
                     </li>
-                    <li className="contorno" onClick={logoutUser}>
+                    <li
+                        className="contorno"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            logoutUser();
+                            navigate("/");
+                        }}
+                    >
                         LOGOUT
                     </li>
                 </ul>

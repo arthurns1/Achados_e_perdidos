@@ -11,7 +11,7 @@ export async function send_request(
         res = await fetch(url, {
             method: method,
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `${token}`,
             },
         });
         const content = await res.json();
@@ -23,7 +23,7 @@ export async function send_request(
                 body: JSON.stringify(body),
                 method: method,
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `${token}`,
                     "Content-Type": "application/json",
                 },
             });
@@ -32,7 +32,7 @@ export async function send_request(
                 body: body,
                 method: method,
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `${token}`,
                 },
             });
         }

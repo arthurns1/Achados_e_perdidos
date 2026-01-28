@@ -3,6 +3,7 @@ import Jwt from "jsonwebtoken";
 
 async function check_login(req: Request, res: Response, next: NextFunction) {
     try {
+        console.log(req.headers.authorization);
         await Jwt.verify(
             req.headers.authorization as string,
             process.env.SECRET_KEY as string,

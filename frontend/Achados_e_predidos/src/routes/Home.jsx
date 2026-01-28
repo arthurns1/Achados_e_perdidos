@@ -18,7 +18,7 @@ function Home() {
                 }
             },
         );
-    });
+    }, []);
 
     function render_adicionar_button() {
         if ("token" in auth) {

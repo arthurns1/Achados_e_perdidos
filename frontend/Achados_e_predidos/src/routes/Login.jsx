@@ -23,7 +23,7 @@ function Login() {
                 if ("error_messages" in res) {
                     setError(res.error_messages[0]);
                 } else {
-                    authUser(res);
+                    authUser(res.token);
                     navigate("/");
                 }
             },
@@ -54,7 +54,12 @@ function Login() {
                         value="Fazer Login"
                         className="submit-button"
                     />
-                    <span className="error_messages">{error}</span>
+                    <span
+                        className="error_messages"
+                        style={{ display: error.length > 0 ? "block" : "none" }}
+                    >
+                        {error}
+                    </span>
                 </form>
             </section>
         </main>
