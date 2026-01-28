@@ -45,21 +45,24 @@ achados-e-perdidos/
 │
 ├── frontend/
 │   ├── src/
+│   │   ├── assets/
 │   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
+│   │   ├── contexts/
+│   │   ├── functions/
 │   │   ├── routes/
-│   │   └── App.jsx
-│   └── package.json
-│
+│   │   ├── app.css
+│   │   ├── app.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── services/
+│   │   ├── database/
 │   │   ├── middlewares/
 │   │   ├── models/
-│   │   └── server.ts
-│   └── package.json
-│
+│   │   ├── routes/
+│   │   ├── server/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── index.ts
 └── README.md
