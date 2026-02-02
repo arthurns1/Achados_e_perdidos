@@ -19,6 +19,7 @@ export async function send_request(
         return content;
     } else if (body !== null) {
         if (bodyType === "json") {
+            console.log(body);
             res = await fetch(url, {
                 body: JSON.stringify(body),
                 method: method,

@@ -16,6 +16,7 @@ import { CadastrarAdmin } from "./routes/CadastrarAdmin.jsx";
 // Contexts
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { RegistrarDevolucao } from "./routes/RegistrarDevolucao.jsx";
+import { Devolucoes } from "./routes/Devolucoes.jsx";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
                 path: "/registro-devolucao/:id",
                 element: <RegistrarDevolucao />,
             },
+            { path: "/devolucoes", element: <Devolucoes /> },
         ],
     },
 ]);

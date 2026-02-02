@@ -10,8 +10,6 @@ function CadastroItem() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    console.log(auth);
-
     function handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

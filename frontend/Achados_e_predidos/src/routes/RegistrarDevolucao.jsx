@@ -15,8 +15,10 @@ function RegistrarDevolucao() {
         const formData = new FormData(e.currentTarget);
         const body = {
             dono: formData.get("matricula"),
+            nome: formData.get("nome"),
         };
 
+        console.log(body);
         send_request(
             `http://localhost:3000/item/register_return/${id}`,
             "PUT",
@@ -45,6 +47,11 @@ function RegistrarDevolucao() {
                     <Field
                         name="matricula"
                         placeholder="Insira sua matricula"
+                        type="text"
+                    />
+                    <Field
+                        name="nome"
+                        placeholder="Insira seu nome"
                         type="text"
                     />
                     <input

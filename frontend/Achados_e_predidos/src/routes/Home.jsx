@@ -13,8 +13,6 @@ function Home() {
             (res) => {
                 if (res.results.length != 0) {
                     setItens(res.results);
-                } else {
-                    setItens(<h2>Não existem itens guardados</h2>);
                 }
             },
         );

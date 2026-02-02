@@ -7,6 +7,7 @@ export function Field(props) {
                 name={props.name}
                 id={"i" + props.name}
                 placeholder={props.placeholder}
+                required
             />
         </div>
     );
