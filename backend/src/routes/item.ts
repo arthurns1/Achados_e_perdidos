@@ -7,6 +7,7 @@ import { check_login } from "../middlewares/validation/check_login";
 const item = Router();
 
 item.get("/get_all", ControllerItens.get_all);
+item.get("/get_all_returned", ControllerItens.get_all_returned);
 item.get("/get_by_id/:id_item", ControllerItens.get_by_id_item);
 item.post(
     "/create",

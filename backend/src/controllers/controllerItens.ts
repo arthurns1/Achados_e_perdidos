@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Item } from "../models/Item";
 import sharp from "sharp";
-import fs from "fs";
+import { Op } from "sequelize";
 
 interface IItem {
     id_item: number;
@@ -67,6 +67,26 @@ class ControllerItens {
         }
     }
 
+    static async get_all_returned(req: Request, res: Response) {
+        try {
+            const itens = await Item.findAll({
+                where: {
+                    dono: { [Op.not]: null },
+                },
+            });
+
+            res.status(201).json({
+                results: itens,
+                success_message: "Sucesso ao retornar itens!",
+            });
+        } catch (err) {
+            res.status(500).json({
+                error_message: "Houve um erro interno ao retornar itens!",
+                error: err,
+            });
+        }
+    }
+
     static async get_by_id_item(req: Request, res: Response) {
         try {
             const params = {
@@ -111,14 +131,12 @@ class ControllerItens {
 
     static async register_return(req: Request, res: Response) {
         try {
-            console.log(req.body);
-
             const params = {
                 id_item: req.params.id_item,
             };
 
             const item = await Item.update(
-                { dono: req.body.dono },
+                { dono: req.body.dono, nome_dono: req.body.nome },
                 { where: params },
             );
 

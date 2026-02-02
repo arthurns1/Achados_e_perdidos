@@ -15,6 +15,9 @@ Item.init(
         dono: {
             type: DataTypes.STRING,
         },
+        nome_dono: {
+            type: DataTypes.STRING,
+        },
         nome: {
             type: DataTypes.STRING,
             allowNull: false,
